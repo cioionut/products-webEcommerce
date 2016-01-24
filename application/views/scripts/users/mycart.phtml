@@ -1,0 +1,57 @@
+
+<?php if ($this->shoppingcart) { ?>
+
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Coutent of your Shopping Cart:</div>
+    <table class='table table-bordered'>
+        <caption>Products</caption>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Delete</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach($this->shoppingcart as $i => $product) {
+            ?>
+            <tr>
+                <td> <?php echo $product->name ?> </td>
+                <td> <?php echo $product->category ?></td>
+                <td class="col-md-2">
+                    <?php echo $this->forms['upForm'][$i] ?>
+                    <a href="javascript: document.<?php echo "upForm$i" ?>.submit();">
+                        <span style="margin-left:10px;" class="glyphicon glyphicon-ok"></span>
+                    </a>
+                </td>
+                <td  class="col-md-1">
+                    <?php echo $this->forms['delForm'][$i] ?>
+                    <a href="javascript: delFromCart('<?php echo "delForm$i"?>')">
+                        <span class="glyphicon glyphicon-remove" style="color:red;margin-left:10px;"></span>
+                    </a>
+                </td>
+                <td> <?php echo $product->currency ?></td>
+            </tr>
+            <?php
+            $this->total->add($product->price * $product->quantity);
+        }
+        ?>
+        </tbody>
+    </table>
+    <div class="panel-footer"><p class="text-right" style="margin-right:130px;font-weight: bold;" >Total price: <?php echo $this->total ?></p></div>
+</div>
+
+<a href="#"><img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="right" style="margin-left:7px;" onclick = "processPayment()" ></a>
+<?php } else  echo "Your shopping cart is empty !" ?>
+
+<div id = "divButton" >
+
+</div>
+
+<hr>
+<!--<a href='<?php /*echo $this->url(array('controller' => 'products', 'action' => 'shop'), 'default', true);*/?>' type='button' class='btn btn-default btn-md'>Back to Shop</a>-->
+

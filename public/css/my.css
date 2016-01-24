@@ -1,0 +1,59 @@
+#toright{
+    margin-left:auto;
+    margin-right: 0;
+    width:7%;
+}
+
+.center{
+    margin:auto;
+    width: 80%;
+}
+
+img.thumbnail{
+    display: block;
+    max-width:320px;
+    max-height:150px;
+    width: auto;
+    height: auto;
+    border:0;
+}
+
+img.item{
+    display: block;
+    max-width:800px;
+    max-height:300px;
+    width: auto;
+    height: auto;
+    margin:auto;
+    border:0;
+}
+img.carouselitem {
+    max-width:800px;
+    max-height:300px;
+    width: auto;
+    height: auto;
+    margin:auto;
+}
+.bybutton{
+    margin: auto;
+    display: block;
+    max-width: 100px;
+    width: auto;
+    height: auto;
+    border:0;
+}
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}

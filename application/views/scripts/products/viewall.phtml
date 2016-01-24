@@ -1,0 +1,45 @@
+<div id='toright'>
+    <a href="<?php echo $this->url(array('controller' => 'products','action' => 'save'), 'default', true) ?>" class='btn btn-success'>Add New</a>
+</div>
+<?php
+    if ($this->products) {
+        $dpath =  $this->url(array('controller' => 'products','action' => 'delete'), 'default', true);
+?>
+    <table class='table table-bordered'>
+    <caption>Products</caption>
+    <thead>
+    <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Price</th>
+    <th>File</th>
+    <th>Image</th>
+    <th>Description</th>
+    <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+<?php
+    foreach($this->products as $i => $product) {
+        $editPath = $this->url(array('controller' => 'products','action' => 'save', 'id' => $product->id), null, true);
+?>
+        <tr>
+            <td>
+            <a href='<?php echo $editPath?>'> <?php echo $product->id ?></a>
+            </td>
+            <td> <?php echo $product->name ?> </td>
+            <td> <?php echo $product->getCategoryName() ?> </td>
+            <td> <?php echo number_format($product->price, 2) ?></td>
+            <td> <a href="<?php echo RUPLOADS_DATA . '/' . $product->file; ?>" download> <?php echo $product->file ?> </a></td>
+            <td> <a href="<?php echo $editPath?>"><img width="150px" src = "<?php if ($product->image) echo RUPLOADS_IMAGES . '/' . $product->image; else echo IMAGE_NOT_FOUND ?>" ></a>  </td>
+            <td> <?php echo substr($product->description,0,20) ?></td>
+            <td>
+                <?php echo $this->forms['delProductForm'][$i] ?>
+            </td>
+        </tr>
+<?php } ?>
+
+    </tbody></table>
+
+<?php } else  echo "No rows found!" ?>

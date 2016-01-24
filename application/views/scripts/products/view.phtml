@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="center" >
+        <div class="col-md-8">
+            <div class="thumbnail">
+                <img class=" item img-responsive" src="<?php if ($this->product->image) echo RUPLOADS_IMAGES . '/' . $this->product->image; else echo IMAGE_NOT_FOUND ?>" alt="">
+                <div class="caption-full">
+                    <h4 class="pull-right"><?php echo $this->product->currency ?></h4>
+                    <h4><a href="#"><?php echo $this->product->name ?></a></h4>
+                    <p><?php echo substr($this->product->description,0,80) ?></p>
+                    <p>Attached file:
+                        <?php if($this->product->file) { ?>
+                            <a href="<?php  echo '/uploads/data/' . $this->product->file;?>" download> <?php echo $this->product->file;?> </a>
+                        <?php } else { ?>
+                            -Not Found-
+                        <?php } ?>
+                    </p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">3 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        4.0 stars
+                    </p>
+                </div>
+                <div class="bybutton">
+                    <a href="#"><img src="<?php echo BUY_BUTTON ?>" onclick="addToCart('<?php echo 'email' ?>','<?php echo $this->product->id ?>')"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

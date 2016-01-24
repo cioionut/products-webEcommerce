@@ -1,0 +1,72 @@
+<div class="row carousel-holder">
+
+    <div class="col-md-12">
+
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <?php foreach( $this->newproducts as $i => $newproduct) {  ?>
+                    <div class="item <?php if($i == 0 ) echo 'active' ?>">
+                        <a href = "<?php echo  $this->url(array('controller' => 'products','action' => 'view', 'id' => $newproduct->id), null, true);?>" >
+                        <img  class="slide-image carouselitem" src="<?php if ($newproduct->image) echo RUPLOADS_IMAGES . '/' . $newproduct->image; else echo IMAGE_NOT_FOUND ?>" alt="<?php echo $newproduct->name ?>">
+                        </a>
+                        <div class="carousel-caption">
+                            <h3><?php echo $newproduct->name ?></h3>
+                            <p><?php echo substr($newproduct->description,0,80) ?></p>
+                        </div>
+                    </div>
+                <?php } ?>
+
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <?php foreach($this->products as $i => $product) { ?>
+
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img class = "thumbnail" src="<?php if ($product->image) echo RUPLOADS_IMAGES . '/' . $product->image; else echo IMAGE_NOT_FOUND ?>" alt="">
+                <div class="caption">
+                    <h4 class="pull-right"><?php echo $product->currency ?> </h4>
+                    <h4><a href="<?php echo  $this->url(array('controller' => 'products','action' => 'view', 'id' => $product->id), null, true);?> "><?php echo $product->name ?></a> </h4>
+                    <p><?php echo substr($product->description,0,80) ?></p>
+                    <p>Attached file:
+                        <?php if($product->file) { ?>
+                            <a href="<?php  echo RUPLOADS_DATA . '/' . $product->file;?>" download> <?php echo $product->file;?> </a>
+                        <?php } else { ?>
+                            -Not Found-
+                        <?php } ?>
+                    </p>
+                </div>
+
+                <div class="ratings">
+                    <p class="pull-right">15 reviews</p>
+                    <p>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </p>
+                </div>
+
+                <div class="bybutton">
+                    <a href="#"><img src="<?php echo BUY_BUTTON ?>" onclick="addToCart('<?php echo $this->user_id ?>','<?php echo $product->id ?>')"></a>
+                </div>
+            </div>
+        </div>
+
+    <?php } ?>
+</div>
